@@ -9,7 +9,7 @@ Based-ACGAN CAN Anomaly Detection Method
     conda remove -n ACGIDS --all
     # activate conda environment
     conda activate ACGIDS
-    # load third-part lib
+    # install third-party libraries
     pip install --user --requirement requirements.txt
 ```
 
