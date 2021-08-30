@@ -21,7 +21,7 @@ Based-ACGAN CAN Anomaly Detection Method
 
 ## Visualdl
 ```shell
-    # we can pip visualdl lib follow as:
+    # you can pip visualdl lib follow as:
     pip install visualdl -i https://mirror.baidu.com/pypi/simple
     
     # start visualdl service
