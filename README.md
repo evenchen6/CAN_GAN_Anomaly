@@ -29,6 +29,9 @@ You can download the raw data from [CAN Datasets](https://ocslab.hksecurity.net/
 
 Convert raw data to CAN Image can refer to the method in figure ![img.png](images/encoding.png)
 
+## Result
+![img.png](images/result.png)
+
 ## Conda environment
 ```shell
     # create conda environment
@@ -48,6 +51,7 @@ Convert raw data to CAN Image can refer to the method in figure ![img.png](image
     
     # Test Script
     # NOTE: Need to be modified to your storage model parameter location
+    # NOTE: The pkl folder provides the same model parameters as the experiments in the paper, if needed, you can use
     bash experiments/run_can_val.sh
 ```
 
