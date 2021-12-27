@@ -38,10 +38,10 @@ the second state.
 
 ## Usage
 ```shell
-    # Train
+    # Train Script
     bash experiments/run_can.sh
     
-    # Test
+    # Test Script
     # NOTE: Need to be modified to your storage model parameter location
     bash experiments/run_can_val.sh
 ```
