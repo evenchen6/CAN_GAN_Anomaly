@@ -1,5 +1,5 @@
 # CAN_GAN_Anomaly
-"Fine-Grained Known/Unknown CAN Bus Intrusion Detection based on Out-of-Distribution Detection for Automotive CPS Security" Code 
+"CAN Bus Intrusion Detection based on ACGAN and Out-of-DistributionDetection for Automotive Cybersecurity" Code 
 
 ## Abstract
 Modern vehicles are prototypical Cyber-Physical Systems, where the
