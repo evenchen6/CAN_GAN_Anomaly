@@ -24,6 +24,11 @@ the second state.
 ## Model structure
 ![img.png](images/model.png)
 
+## Dataset
+You can download the raw data from [CAN Datasets](https://ocslab.hksecurity.net/Datasets/CAN-intrusion-dataset)
+
+Convert raw data to CAN Image can refer to the method in figure ![img.png](images/encoding.png)
+
 ## Conda environment
 ```shell
     # create conda environment
