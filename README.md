@@ -1,5 +1,5 @@
 # CAN_GAN_Anomaly
-"CAN Bus Intrusion Detection based on ACGAN and Out-of-DistributionDetection for Automotive Cybersecurity" Code 
+"CAN Bus Intrusion Detection based on ACGAN and Out-of-DistributionDetection" Code 
 
 ## Abstract
 Modern vehicles are prototypical Cyber-Physical Systems, where the
