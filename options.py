@@ -37,10 +37,15 @@ class Options():
 
         self.opt = None
 
-    def parse(self):
+    def parse(self, is_jupyter=False):
         """
             parse param
+
+            Update: support Jupyter environment
         """
-        self.opt = self.parser.parse_args()
+        if is_jupyter:
+            self.opt = self.parser.parse_known_args()[0]
+        else:
+            self.opt = self.parser.parse_args()
 
         return self.opt
