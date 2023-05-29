@@ -1,6 +1,16 @@
 # CAN_GAN_Anomaly
 "CAN bus intrusion detection based on auxiliary classifier GAN and out-of-distribution detection" Code 
 
+## Notice
+This project is migrated from [`github.com/leyiweb/CAN_GAN_Anomaly`](https://github.com/leyiweb/CAN_GAN_Anomaly). Due to an erroneous blockage from Microsoft, we decided to move the repository. 
+
+Now, you can find the project at [`github.com/evenchen6/CAN_GAN_Anomaly`](https://github.com/evenchen6/CAN_GAN_Anomaly).
+
+We appreciate your support and we will continue to maintain and update this project. 
+
+If you have any questions or suggestions, feel free to raise an issue. 
+
+
 ## Abstract
 Modern vehicles are prototypical Cyber-Physical Systems, where the
 in-vehicle Electrical/Electronic (E/E) system interacts closely with its
