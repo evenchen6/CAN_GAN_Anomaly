@@ -1,5 +1,5 @@
 # CAN_GAN_Anomaly
-"CAN Bus Intrusion Detection based on ACGAN and Out-of-DistributionDetection" Code 
+"CAN bus intrusion detection based on auxiliary classifier GAN and out-of-distribution detection" Code 
 
 ## Abstract
 Modern vehicles are prototypical Cyber-Physical Systems, where the
@@ -66,5 +66,14 @@ Convert raw data to CAN Image can refer to the method in figure ![img.png](image
 
 if you find our model/method/dataset useful, please cite our work:
 ```angular2html
-
+@article{chen2022can,
+  title={CAN bus intrusion detection based on auxiliary classifier GAN and out-of-distribution detection},
+  author={Zhao, Qingling and Chen, Mingqiang and Gu, Zonghua and Luan, Siyu and Zeng, Haibo and Chakrabory, Samarjit},
+  journal={ACM Transactions on Embedded Computing Systems (TECS)},
+  volume={21},
+  number={4},
+  pages={1--30},
+  year={2022},
+  publisher={ACM New York, NY}
+}
 ```
