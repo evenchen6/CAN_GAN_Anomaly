@@ -1,8 +1,8 @@
 import time
 import torch
-from networks import Generator, Discriminator
-from random import randomint_plus
-from evaluate import ResultTransformByStrategy
+from .networks import Generator, Discriminator
+from .random import randomint_plus
+from .evaluate import ResultTransformByStrategy
 from torch.autograd import Variable
 from tqdm import tqdm
 import numpy as np
@@ -106,31 +106,53 @@ class Model:
         self.writer_images.close()
         self.writer_loss.close()
 
+    def validate(self):
+        """Execute validation using pre-trained checkpoints without running the training loop."""
+        print(f">> Validating {self.opt.model_name} on {self.opt.dataset} to detect {self.opt.abnormal_class}")
+        now_time = str(time.time())
+        self.writer_metrics = LogWriter(logdir=os.path.join(self.opt.log_path, now_time, "metrics"))
+        try:
+            self.load_pkl()
+            self.val_openset(0)
+        finally:
+            self.writer_metrics.close()
+
     def load_pkl(self, epoch = 0):
-        """
-            Load the trained model
+        """Load discriminator (and optionally generator) weights for validation or resumed training.
+
         Args:
-            epoch:
-
-        Returns:
-
+            epoch (int): Target epoch when checkpoints are stored inside a directory tree.
         """
         # Construct model parameter path
-        discriminator_pkl_path = os.path.join(self.opt.pkl_path, ("discriminator_epoch_%d.pkl" % epoch))
-        generator_pkl_path = os.path.join(self.opt.pkl_path, ("generator_epoch_%d.pkl" % epoch))
+        if os.path.isdir(self.opt.pkl_path):
+            # Default training layout: load checkpoints named by epoch inside the provided folder.
+            discriminator_pkl_path = os.path.join(self.opt.pkl_path, ("discriminator_epoch_%d.pkl" % epoch))
+            generator_pkl_path = os.path.join(self.opt.pkl_path, ("generator_epoch_%d.pkl" % epoch))
 
-        # Load model parameters
-        discriminator = torch.load(discriminator_pkl_path, map_location=self.device)
-        generator = torch.load(generator_pkl_path, map_location=self.device)
+            # Load model parameters
+            discriminator = torch.load(discriminator_pkl_path, map_location=self.device)
+            generator = torch.load(generator_pkl_path, map_location=self.device)
 
-        # If there is cuda, switch to cuda
-        cuda = True if torch.cuda.is_available() else False
-        if cuda:
-            discriminator = discriminator.cuda(self.device)
-            generator = generator.cuda(self.device)
+            # If there is cuda, switch to cuda
+            if torch.cuda.is_available():
+                discriminator = discriminator.cuda(self.device)
+                generator = generator.cuda(self.device)
 
-        self.discriminator = discriminator
-        self.generator = generator
+            self.discriminator = discriminator
+            self.generator = generator
+        else:
+            # Lightweight validation layout: load a single discriminator checkpoint file given via --pkl_path.
+            checkpoint = torch.load(self.opt.pkl_path, map_location=self.device)
+            # If checkpoint is a dictionary (containing only model weights)
+            if isinstance(checkpoint, dict):
+                # Load the state dictionary into the discriminator
+                self.discriminator.load_state_dict(checkpoint)
+            else:
+                # Otherwise, checkpoint is a complete model object, assign directly
+                self.discriminator = checkpoint
+
+            if torch.cuda.is_available():
+                self.discriminator = self.discriminator.cuda(self.device)
 
     def train_one_epoch(self, epoch = 0):
         """
@@ -217,7 +239,6 @@ class Model:
         :return: recall / precision / f1_score / auc / accuracy
         """
         self.discriminator.eval()
-        self.generator.eval()
 
         """
             Mixed data set (open set) evaluation, here mainly use macro index evaluation

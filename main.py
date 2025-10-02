@@ -8,7 +8,10 @@ def main():
     opt = Options().parse()
     data = load_data(opt)
     model = Model(opt, data)
-    model.train()
+    if opt.is_infer_mode:
+        model.validate()
+    else:
+        model.train()
 
 if __name__ == '__main__':
     main()

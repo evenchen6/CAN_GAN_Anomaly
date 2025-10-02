@@ -7,6 +7,6 @@ do
     abnormal_class=${arr[i]}
     pkg_path=${pkg_arr[i]}
     echo "Running CAN. Anomaly Class: $abnormal_class "
-    python main.py --dataset CAN --img_size 48 --channels 1 --n_classes 5 --n_abnormal_classes 1 --batch_size 64 --n_epochs 600 --abnormal_class $abnormal_class --log_path "./log/can_strategy" --pkl_path $pkg_path
+    python main.py --dataset CAN --img_size 48 --channels 1 --n_classes 5 --n_abnormal_classes 1 --batch_size 64 --n_epochs 600 --abnormal_class $abnormal_class --log_path "./log/can_strategy" --pkl_path $pkg_path --is_infer_mode true
 done
 exit 0

@@ -27,6 +27,7 @@ class Options():
         self.parser.add_argument("--log_path", type=str, default='./log/dataset', help="record log path") # save visualdl log
         self.parser.add_argument("--pkl_path", type=str, default='./pth/dataset', help="record pkl path")
         self.parser.add_argument("--is_train_mode", type=bool, default=False, help="is train mode")
+        self.parser.add_argument("--is_infer_mode", type=bool, default=False, help="run inference-only validation flow")
 
         # Auto Update param
         self.parser.add_argument('--abnormal_class_idx', default=0, help='Anomaly class idx for datasets, auto update!')

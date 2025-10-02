@@ -45,12 +45,20 @@ Convert raw data to CAN Image can refer to the method in figure ![img.png](image
 ## Conda environment
 ```shell
     # create conda environment
-    conda create -n ACGIDS python=3.7
+    conda create -n ACGIDS python=3.7 -c conda-forge
+    # If you are using a Mac with an M-series (Apple Silicon) chip and need Intel (x86_64) compatibility, you can specify the platform as follows:
+    CONDA_SUBDIR=osx-64 conda create -n ACGIDS python=3.7 -c conda-forge
+    # Or with newer Conda versions (>=23.10.0), you can use:
+    conda create --platform osx-64 -n ACGIDS python=3.7 -c conda-forge
+
     # delete conda environment
     conda remove -n ACGIDS --all
+
     # activate conda environment
     conda activate ACGIDS
+    
     # install third-party libraries
+    # It is safe to ignore the warning about Pillow version incompatibility (visualdl 2.2.0 requires Pillow>=7.0.0, but you have pillow 6.2.2) as long as VisualDL runs smoothly. If any errors occur, consider upgrading Pillow to a supported version.
     pip install --user --requirement requirements.txt
 ```
 
@@ -68,7 +76,7 @@ Convert raw data to CAN Image can refer to the method in figure ![img.png](image
 ## Visualdl
 ```shell
     # you can pip visualdl lib follow as:
-    pip install visualdl -i https://mirror.baidu.com/pypi/simple
+    pip install visualdl -i https://mirrors.aliyun.com/pypi/simple
     
     # start visualdl service, load model saved log
     nohup visualdl --logdir log --port 8080 &
